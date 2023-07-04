@@ -12,7 +12,7 @@ class TopSearchBar extends StatelessWidget {
       child: TextField(
         autocorrect: false,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(22, 0, 5, 0),
+          contentPadding: EdgeInsets.fromLTRB(22, 0, 0, 0),
           filled: true,
           fillColor: Colors.deepOrange.shade100,
           border: OutlineInputBorder(
