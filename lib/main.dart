@@ -4,8 +4,6 @@ import 'package:campuslib_flutter/routes/home/home_page.dart';
 import 'package:campuslib_flutter/routes/profile/profile_page.dart';
 import 'package:campuslib_flutter/routes/search/search_page.dart';
 import 'package:campuslib_flutter/utils/colors.dart';
-import 'package:campuslib_flutter/utils/routers.dart';
-import 'package:campuslib_flutter/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 

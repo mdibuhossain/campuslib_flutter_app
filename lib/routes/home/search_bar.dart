@@ -1,4 +1,3 @@
-import 'package:campuslib_flutter/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class TopSearchBar extends StatelessWidget {
