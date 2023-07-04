@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:campuslib_flutter/routes/home/search_bar.dart';
 import 'package:campuslib_flutter/utils/colors.dart';
 import 'package:campuslib_flutter/widgets/big_text.dart';
@@ -36,9 +38,7 @@ class Header extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          // Search bar start ----------------->
           TopSearchBar(),
-          // Search bar end <-----------------
         ],
       ),
     );
