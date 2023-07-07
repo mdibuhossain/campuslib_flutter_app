@@ -1,4 +1,4 @@
-import 'package:campuslib_flutter/widgets/big_text.dart';
+import 'package:campuslib/widgets/big_text.dart';
 import 'package:flutter/material.dart';
 
 class DepartmentItem extends StatelessWidget {

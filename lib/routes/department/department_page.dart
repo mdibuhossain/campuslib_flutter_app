@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:campuslib_flutter/utils/dimensions.dart';
-import 'package:campuslib_flutter/widgets/department_item.dart';
+import 'package:campuslib/utils/colors.dart';
+import 'package:campuslib/utils/dimensions.dart';
+import 'package:campuslib/widgets/big_text.dart';
+import 'package:campuslib/widgets/department_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,12 +23,34 @@ class DepartmentPage extends StatelessWidget {
               child: Container(
                 width: double.maxFinite,
                 height: Dimension.deptBannerContainer,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image:
-                        AssetImage("assets/images/${props['deptBanner']}.jpg"),
-                    fit: BoxFit.cover,
-                  ),
+                child: Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                              "assets/images/${props['deptBanner']}.jpg"),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: Get.context!.height,
+                      width: double.maxFinite,
+                      color: Color.fromARGB(165, 0, 0, 0),
+                      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                      child: Center(
+                        child: BigText(
+                          text: props['deptName']!,
+                          color: AppColors.lightColor,
+                          fontWeight: FontWeight.w900,
+                          size: 35,
+                          overflow: TextOverflow.clip,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
             ),
@@ -42,7 +66,7 @@ class DepartmentPage extends StatelessWidget {
                 ),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Get.back();
                   },
                   style: ButtonStyle(
                     iconSize: MaterialStateProperty.resolveWith((states) => 20),
@@ -64,14 +88,14 @@ class DepartmentPage extends StatelessWidget {
             Positioned(
               left: 0,
               right: 0,
-              top: Dimension.deptBannerContainer - 20,
+              top: Dimension.deptBannerContainer - 30,
               bottom: 0,
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
                   ),
                 ),
                 child: GridView.count(

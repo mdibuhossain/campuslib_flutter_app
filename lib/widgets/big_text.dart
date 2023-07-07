@@ -21,6 +21,7 @@ class BigText extends StatelessWidget {
     return Text(
       text,
       overflow: overflow,
+      textAlign: TextAlign.center,
       style: TextStyle(
         color: color,
         fontSize: size,

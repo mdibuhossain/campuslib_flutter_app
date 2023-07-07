@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:campuslib_flutter/routes/home/search_bar.dart';
+import 'package:campuslib/routes/home/search_bar.dart';
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatelessWidget {

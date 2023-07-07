@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:campuslib_flutter/utils/colors.dart';
-import 'package:campuslib_flutter/utils/dimensions.dart';
-import 'package:campuslib_flutter/utils/routers.dart';
-import 'package:campuslib_flutter/widgets/big_text.dart';
+import 'package:campuslib/utils/colors.dart';
+import 'package:campuslib/utils/dimensions.dart';
+import 'package:campuslib/utils/routers.dart';
+import 'package:campuslib/widgets/big_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -82,13 +82,12 @@ class _DepartmentBodyState extends State<DepartmentBody> {
                   fit: BoxFit.cover,
                   image: AssetImage("assets/images/${deptList[index]}.jpg"),
                 ),
-                color: index.isOdd ? AppColors.paraColor : AppColors.mainColor,
               ),
             ),
             Card(
               elevation: 0.0,
               margin: EdgeInsets.zero,
-              color: Color.fromARGB(188, 35, 35, 35),
+              color: Color.fromARGB(202, 25, 24, 24),
               child: Container(
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
@@ -110,6 +109,7 @@ class _DepartmentBodyState extends State<DepartmentBody> {
                           style: TextStyle(
                             color: AppColors.lightColor,
                             fontWeight: FontWeight.w500,
+                            // fontSize: 18,
                           ),
                         ),
                       ),

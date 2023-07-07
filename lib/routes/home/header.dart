@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:campuslib_flutter/routes/home/search_bar.dart';
-import 'package:campuslib_flutter/utils/colors.dart';
-import 'package:campuslib_flutter/widgets/big_text.dart';
+import 'package:campuslib/routes/home/search_bar.dart';
+import 'package:campuslib/utils/colors.dart';
+import 'package:campuslib/widgets/big_text.dart';
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {

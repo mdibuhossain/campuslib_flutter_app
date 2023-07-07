@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:campuslib_flutter/providers/total_provider.dart';
-import 'package:campuslib_flutter/utils/colors.dart';
-import 'package:campuslib_flutter/utils/dimensions.dart';
+import 'package:campuslib/providers/total_provider.dart';
+import 'package:campuslib/utils/colors.dart';
+import 'package:campuslib/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
