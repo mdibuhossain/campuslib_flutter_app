@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:campuslib_flutter/utils/colors.dart';
+import 'package:campuslib_flutter/utils/dimensions.dart';
+import 'package:campuslib_flutter/utils/routers.dart';
 import 'package:campuslib_flutter/widgets/big_text.dart';
 import 'package:flutter/material.dart';
 
@@ -51,7 +53,7 @@ class _DepartmentBodyState extends State<DepartmentBody> {
 
   Widget _buildDepartmentItem(int index) {
     return Container(
-      height: 100,
+      height: Dimension.deptNameContainer,
       margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
@@ -76,7 +78,9 @@ class _DepartmentBodyState extends State<DepartmentBody> {
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 child: InkWell(
-                  onTap: () => print("hello"),
+                  onTap: () {
+                    Navigator.pushNamed(context, MyRouters.departmentRoute);
+                  },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
