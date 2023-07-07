@@ -3,12 +3,14 @@
 import 'package:campuslib_flutter/utils/dimensions.dart';
 import 'package:campuslib_flutter/widgets/department_item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DepartmentPage extends StatelessWidget {
   const DepartmentPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, String> props = Get.arguments;
     return Scaffold(
       body: Container(
         height: Dimension.screenHeight,
@@ -21,7 +23,8 @@ class DepartmentPage extends StatelessWidget {
                 height: Dimension.deptBannerContainer,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("assets/images/cse.jpg"),
+                    image:
+                        AssetImage("assets/images/${props['deptBanner']}.jpg"),
                     fit: BoxFit.cover,
                   ),
                 ),

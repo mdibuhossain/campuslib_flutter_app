@@ -5,6 +5,7 @@ import 'package:campuslib_flutter/utils/dimensions.dart';
 import 'package:campuslib_flutter/utils/routers.dart';
 import 'package:campuslib_flutter/widgets/big_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DepartmentBody extends StatefulWidget {
   const DepartmentBody({Key? key}) : super(key: key);
@@ -14,6 +15,21 @@ class DepartmentBody extends StatefulWidget {
 }
 
 class _DepartmentBodyState extends State<DepartmentBody> {
+  late List<String> deptList = [
+    "cse",
+    "eee",
+    "math",
+    "sta",
+    "nonacademic",
+  ];
+  late Map<String, String> deptFullName = {
+    "cse": "Computer Science and Engineering",
+    "eee": "Electrical and Electronic Engineering",
+    "math": "Mathematics",
+    "sta": "Statistics",
+    "nonacademic": "Non Academic",
+  };
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -31,14 +47,13 @@ class _DepartmentBodyState extends State<DepartmentBody> {
             child: Container(
               padding: EdgeInsets.fromLTRB(20, 15, 20, 0),
               decoration: BoxDecoration(
-                // color: AppColors.iconColor1,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(40),
                   topRight: Radius.circular(40),
                 ),
               ),
               child: ListView.builder(
-                itemCount: 10,
+                itemCount: deptList.length,
                 padding: EdgeInsets.zero,
                 physics: BouncingScrollPhysics(),
                 shrinkWrap: true,
@@ -65,7 +80,7 @@ class _DepartmentBodyState extends State<DepartmentBody> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage("assets/images/sta.jpg"),
+                  image: AssetImage("assets/images/${deptList[index]}.jpg"),
                 ),
                 color: index.isOdd ? AppColors.paraColor : AppColors.mainColor,
               ),
@@ -79,14 +94,18 @@ class _DepartmentBodyState extends State<DepartmentBody> {
                 width: MediaQuery.of(context).size.width,
                 child: InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, MyRouters.departmentRoute);
+                    // Navigator.name(context, MyRouters.departmentRoute);
+                    Get.toNamed(MyRouters.departmentRoute, arguments: {
+                      "deptBanner": deptList[index],
+                      "deptName": deptFullName[deptList[index]]!,
+                    });
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ListTile(
                         title: Text(
-                          "Applied Chemistry and Chemical Engineering Department",
+                          deptFullName[deptList[index]]!,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: AppColors.lightColor,
