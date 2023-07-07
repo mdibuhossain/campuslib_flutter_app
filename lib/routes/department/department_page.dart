@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:campuslib_flutter/utils/dimensions.dart';
-import 'package:campuslib_flutter/widgets/big_text.dart';
 import 'package:campuslib_flutter/widgets/department_item.dart';
 import 'package:flutter/material.dart';
 
@@ -79,10 +78,18 @@ class DepartmentPage extends StatelessWidget {
                   physics: BouncingScrollPhysics(),
                   padding: EdgeInsets.fromLTRB(50, 80, 50, 10),
                   children: [
-                    DepartmentItem(),
-                    DepartmentItem(),
-                    DepartmentItem(),
-                    DepartmentItem(),
+                    DepartmentItem(
+                      icon: Icons.book_outlined,
+                      name: "Books",
+                    ),
+                    DepartmentItem(
+                      icon: Icons.question_mark_outlined,
+                      name: "Questions",
+                    ),
+                    DepartmentItem(
+                      icon: Icons.topic,
+                      name: "Syllabus",
+                    ),
                   ],
                 ),
               ),
