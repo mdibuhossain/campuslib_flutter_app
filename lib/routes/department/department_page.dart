@@ -15,14 +15,14 @@ class DepartmentPage extends StatelessWidget {
     final Map<String, String> props = Get.arguments;
     return Scaffold(
       body: Container(
-        height: Dimension.screenHeight,
+        height: Dimension.screenHeight(context),
         width: double.maxFinite,
         child: Stack(
           children: [
             Positioned(
               child: Container(
                 width: double.maxFinite,
-                height: Dimension.deptBannerContainer,
+                height: Dimension.deptBannerContainer(context),
                 child: Stack(
                   alignment: AlignmentDirectional.center,
                   children: [
@@ -88,7 +88,7 @@ class DepartmentPage extends StatelessWidget {
             Positioned(
               left: 0,
               right: 0,
-              top: Dimension.deptBannerContainer - 30,
+              top: Dimension.deptBannerContainer(context) - 30,
               bottom: 0,
               child: Container(
                 decoration: BoxDecoration(

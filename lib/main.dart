@@ -8,6 +8,7 @@ import 'package:campuslib/routes/search/search_page.dart';
 import 'package:campuslib/utils/routers.dart';
 import 'package:campuslib/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
@@ -41,6 +42,10 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     final provider = Provider.of<TotalProvider>(context);
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,

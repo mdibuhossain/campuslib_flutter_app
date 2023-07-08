@@ -33,9 +33,9 @@ class BottomNavBar extends StatelessWidget {
         duration: Duration(milliseconds: 300),
         onTabChange: (value) {
           provider.toggleNavIndex(value);
-          print(Dimension.screenHeight.toString() +
+          print(Dimension.screenHeight(context).toString() +
               " " +
-              Dimension.screenWidth.toString());
+              Dimension.screenWidth(context).toString());
         },
         tabs: [
           GButton(

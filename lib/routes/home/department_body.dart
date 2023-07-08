@@ -68,7 +68,7 @@ class _DepartmentBodyState extends State<DepartmentBody> {
 
   Widget _buildDepartmentItem(int index) {
     return Container(
-      height: Dimension.deptNameContainer,
+      height: Dimension.deptNameContainer(context),
       margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
