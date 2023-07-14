@@ -1,46 +1,33 @@
-// To parse this JSON data, do
-//
-//     final department = departmentFromJson(jsonString);
-
-import 'dart:convert';
-
 class Department {
-  Data data;
+  Data? data;
 
-  Department({
-    required this.data,
-  });
+  Department({this.data});
 
-  factory Department.fromRawJson(String str) =>
-      Department.fromJson(json.decode(str));
+  Department.fromJson(Map<String, dynamic> json) {
+    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+  }
 
-  String toRawJson() => json.encode(toJson());
-
-  factory Department.fromJson(Map<String, dynamic> json) => Department(
-        data: Data.fromJson(json["data"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "data": data.toJson(),
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
+    }
+    return data;
+  }
 }
 
 class Data {
-  List<String> getDepartments;
+  List<String>? getDepartments;
 
-  Data({
-    required this.getDepartments,
-  });
+  Data({this.getDepartments});
 
-  factory Data.fromRawJson(String str) => Data.fromJson(json.decode(str));
+  Data.fromJson(Map<String, dynamic> json) {
+    getDepartments = json['getDepartments'].cast<String>();
+  }
 
-  String toRawJson() => json.encode(toJson());
-
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        getDepartments: List<String>.from(json["getDepartments"].map((x) => x)),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "getDepartments": List<dynamic>.from(getDepartments.map((x) => x)),
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['getDepartments'] = this.getDepartments;
+    return data;
+  }
 }

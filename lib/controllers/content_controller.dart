@@ -3,16 +3,23 @@ import 'package:campuslib/services/remote_services.dart';
 import 'package:get/get.dart';
 
 class ContentController extends GetxController {
-  Department deptList = Department(data: );
+  // var dept = Department().obs;
+  // List<String>? get deptList => dept.value.data?.getDepartments;
+  Department dept = Department();
+  RxBool isLoadingForDept = true.obs;
 
   @override
   void onInit() {
-    fetchDepartments();
     super.onInit();
+    fetchDepartments();
   }
 
-  void fetchDepartments() async {
-    var depts = await RemoteServices.fetchDepartments() as List<Department>;
-    deptList.value = depts;
+  Future<Department> fetchDepartments() async {
+    isLoadingForDept.value = true;
+    var tmp = await RemoteServices.fetchDepartments();
+    if (tmp != null) dept = tmp;
+    isLoadingForDept.value = false;
+    print(dept.data?.getDepartments);
+    return dept;
   }
 }
