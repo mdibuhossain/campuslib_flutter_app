@@ -12,7 +12,7 @@ class DepartmentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, String> props = Get.arguments;
+    final Map<String, dynamic> props = Get.arguments;
     return Scaffold(
       body: Container(
         height: Dimension.screenHeight(context),

@@ -39,10 +39,10 @@ class _DepartmentBodyState extends State<DepartmentBody> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (_contentController.isLoadingForDept.value) {
+      if (!(_contentController.dept.value.data != null)) {
         return CircularProgressIndicator();
       } else {
-        var deptList = _contentController.dept.data?.getDepartments;
+        var deptList = _contentController.dept.value.data?.getDepartments;
         print("bal $deptList");
         // return BigText(text: "hello");
         return _initDeptBody(deptList);
@@ -118,7 +118,7 @@ class _DepartmentBodyState extends State<DepartmentBody> {
                     // Navigator.name(context, MyRouters.departmentRoute);
                     Get.toNamed(MyRouters.departmentRoute, arguments: {
                       "deptBanner": deptList[index],
-                      "deptName": deptFullName[deptList[index]]!,
+                      "deptName": deptFullName[deptList[index]],
                     });
                   },
                   child: Column(
