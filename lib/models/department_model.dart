@@ -17,12 +17,12 @@ class Department {
 }
 
 class Data {
-  List<String>? getDepartments;
+  List<String?>? getDepartments;
 
   Data({this.getDepartments});
 
   Data.fromJson(Map<String, dynamic> json) {
-    getDepartments = json['getDepartments'].cast<String>();
+    getDepartments = json['getDepartments'].cast<String?>();
   }
 
   Map<String, dynamic> toJson() {

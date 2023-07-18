@@ -1,10 +1,14 @@
+import 'package:campuslib/utils/routers.dart';
 import 'package:campuslib/widgets/big_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DepartmentItem extends StatelessWidget {
   final IconData icon;
   final String name;
-  const DepartmentItem({Key? key, required this.icon, required this.name})
+  final dynamic data;
+  const DepartmentItem(
+      {Key? key, required this.icon, required this.name, required this.data})
       : super(key: key);
 
   @override
@@ -14,7 +18,11 @@ class DepartmentItem extends StatelessWidget {
       elevation: 4.0,
       child: InkWell(
         borderRadius: BorderRadius.circular(6),
-        onTap: () {},
+        onTap: () {
+          Get.toNamed(MyRouters.contentRoute, arguments: {
+            "data": data,
+          });
+        },
         splashColor: Colors.deepOrange,
         child: Ink(
           child: Column(

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:campuslib/providers/total_provider.dart';
+import 'package:campuslib/routes/department/content.dart';
 import 'package:campuslib/routes/department/department_page.dart';
 import 'package:campuslib/routes/home/home_page.dart';
 import 'package:campuslib/routes/profile/profile_page.dart';
@@ -32,7 +33,7 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   static const List<Widget> _navPages = <Widget>[
-    // DepartmentPage(),
+    // Content(),
     MainHomePage(),
     SearchPage(),
     ProfilePage(),
@@ -52,6 +53,7 @@ class _MainAppState extends State<MainApp> {
       defaultTransition: Transition.native,
       getPages: [
         GetPage(name: MyRouters.departmentRoute, page: () => DepartmentPage()),
+        GetPage(name: MyRouters.contentRoute, page: () => Content()),
       ],
       home: Scaffold(
         bottomNavigationBar: BottomNavBar(),

@@ -28,7 +28,7 @@ class BottomNavBar extends StatelessWidget {
         backgroundColor: AppColors.mainColor,
         color: AppColors.iconColor1,
         activeColor: AppColors.iconColor1,
-        tabBackgroundColor: Colors.deepOrange.shade900,
+        tabBackgroundColor: AppColors.navButtonBG,
         padding: EdgeInsets.all(8),
         duration: Duration(milliseconds: 300),
         onTabChange: (value) {

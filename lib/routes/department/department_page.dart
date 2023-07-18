@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:campuslib/controllers/content_controller.dart';
 import 'package:campuslib/utils/colors.dart';
 import 'package:campuslib/utils/dimensions.dart';
 import 'package:campuslib/widgets/big_text.dart';
@@ -8,7 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DepartmentPage extends StatelessWidget {
-  const DepartmentPage({Key? key}) : super(key: key);
+  DepartmentPage({Key? key}) : super(key: key);
+
+  final ContentController _contentController = Get.put(ContentController());
 
   @override
   Widget build(BuildContext context) {
@@ -108,14 +111,17 @@ class DepartmentPage extends StatelessWidget {
                     DepartmentItem(
                       icon: Icons.book_outlined,
                       name: "Books",
+                      data: _contentController.bookList,
                     ),
                     DepartmentItem(
                       icon: Icons.question_mark_outlined,
                       name: "Questions",
+                      data: _contentController.bookList,
                     ),
                     DepartmentItem(
                       icon: Icons.topic,
                       name: "Syllabus",
+                      data: _contentController.bookList,
                     ),
                   ],
                 ),

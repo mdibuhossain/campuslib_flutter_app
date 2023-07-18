@@ -39,13 +39,13 @@ class _DepartmentBodyState extends State<DepartmentBody> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (!(_contentController.dept.value.data != null)) {
+      if (!(_contentController.deptList != null &&
+          _contentController.bookList != null)) {
         return CircularProgressIndicator();
       } else {
+        print(_contentController.book.value.data?.getBooks?.length);
         var deptList = _contentController.dept.value.data?.getDepartments;
-        print("bal $deptList");
-        // return BigText(text: "hello");
-        return _initDeptBody(deptList);
+        return _initDeptBody(_contentController.deptList);
       }
     });
   }
@@ -89,60 +89,65 @@ class _DepartmentBodyState extends State<DepartmentBody> {
   }
 
   Widget _buildDepartmentItem(var deptList, int index) {
-    return Container(
-      height: Dimension.deptNameContainer(context),
-      margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(15),
-        child: Stack(
-          alignment: AlignmentDirectional.center,
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage("assets/images/${deptList[index]}.jpg"),
-                ),
-              ),
-            ),
-            Card(
-              elevation: 0.0,
-              margin: EdgeInsets.zero,
-              color: Color.fromARGB(202, 25, 24, 24),
-              child: Container(
-                height: MediaQuery.of(context).size.height,
+    final String? currentString = deptList[index];
+    if (currentString != null) {
+      return Container(
+        height: Dimension.deptNameContainer(context),
+        margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15),
+          child: Stack(
+            alignment: AlignmentDirectional.center,
+            children: [
+              Container(
                 width: MediaQuery.of(context).size.width,
-                child: InkWell(
-                  onTap: () {
-                    // Navigator.name(context, MyRouters.departmentRoute);
-                    Get.toNamed(MyRouters.departmentRoute, arguments: {
-                      "deptBanner": deptList[index],
-                      "deptName": deptFullName[deptList[index]],
-                    });
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ListTile(
-                        title: Text(
-                          deptFullName[deptList?[index]]!,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: AppColors.lightColor,
-                            fontWeight: FontWeight.w500,
-                            // fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage("assets/images/${deptList[index]}.jpg"),
                   ),
                 ),
               ),
-            ),
-          ],
+              Card(
+                elevation: 0.0,
+                margin: EdgeInsets.zero,
+                color: Color.fromARGB(202, 25, 24, 24),
+                child: Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: InkWell(
+                    onTap: () {
+                      // Navigator.name(context, MyRouters.departmentRoute);
+                      Get.toNamed(MyRouters.departmentRoute, arguments: {
+                        "deptBanner": deptList[index],
+                        "deptName": deptFullName[deptList[index]],
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ListTile(
+                          title: Text(
+                            deptFullName[deptList?[index]]!,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: AppColors.lightColor,
+                              fontWeight: FontWeight.w500,
+                              // fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    } else {
+      return Container();
+    }
   }
 }
