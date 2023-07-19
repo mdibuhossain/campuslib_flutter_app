@@ -15,7 +15,9 @@ class DepartmentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> props = Get.arguments;
+    final Map<String, dynamic>? props = Get.arguments;
+    final category = props?['category'];
+    final deptFullName = props?['deptName'];
     return Scaffold(
       body: Container(
         height: Dimension.screenHeight(context),
@@ -32,8 +34,7 @@ class DepartmentPage extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage(
-                              "assets/images/${props['deptBanner']}.jpg"),
+                          image: AssetImage("assets/images/$category.jpg"),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -45,7 +46,7 @@ class DepartmentPage extends StatelessWidget {
                       padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                       child: Center(
                         child: BigText(
-                          text: props['deptName']!,
+                          text: deptFullName ?? "",
                           color: AppColors.lightColor,
                           fontWeight: FontWeight.w900,
                           size: 35,
@@ -112,16 +113,19 @@ class DepartmentPage extends StatelessWidget {
                       icon: Icons.book_outlined,
                       name: "Books",
                       data: _contentController.bookList,
+                      category: category,
                     ),
                     DepartmentItem(
                       icon: Icons.question_mark_outlined,
                       name: "Questions",
                       data: _contentController.bookList,
+                      category: category,
                     ),
                     DepartmentItem(
                       icon: Icons.topic,
                       name: "Syllabus",
                       data: _contentController.bookList,
+                      category: category,
                     ),
                   ],
                 ),

@@ -1,5 +1,6 @@
-import 'package:campuslib/widgets/big_text.dart';
+import 'package:campuslib/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class Content extends StatelessWidget {
@@ -7,13 +8,26 @@ class Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic?>? data = Get.arguments;
-    final contentlist = data?['data'];
+    final Map<String, dynamic>? data = Get.arguments;
+    final category = data?['category'];
+    final subCategory = data?['sub_category'];
+    final contentlist =
+        data?['data']?.where((e) => e?.categories == category).toList();
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            subCategory,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+          titleSpacing: 00.0,
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: AppColors.mainColor,
+        ),
         body: Material(
           child: ListView.builder(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             itemCount: contentlist?.length,
             itemBuilder: (context, index) => contentItem(contentlist?[index]),
           ),
@@ -24,25 +38,28 @@ class Content extends StatelessWidget {
 
   Widget contentItem(var props) {
     return Container(
-      margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-      decoration: BoxDecoration(
-        color: Colors.grey.shade200,
-      ),
-      child: Ink(
+      // margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+      child: Card(
+        margin: EdgeInsets.zero,
         child: InkWell(
           onTap: () {},
           child: Container(
-            padding: EdgeInsets.fromLTRB(15, 12, 15, 12),
+            padding: EdgeInsets.fromLTRB(15, 25, 15, 25),
             decoration: BoxDecoration(
-                // color: Colors.white,
+              border: Border(
+                bottom: BorderSide(
+                  color: Colors.grey.shade300,
                 ),
+              ),
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  props.bookName ?? "Not clickable",
-                  style: TextStyle(
+                  props.bookName,
+                  style: const TextStyle(
                     overflow: TextOverflow.clip,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],

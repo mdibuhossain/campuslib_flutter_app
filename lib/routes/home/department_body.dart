@@ -44,7 +44,6 @@ class _DepartmentBodyState extends State<DepartmentBody> {
         return CircularProgressIndicator();
       } else {
         print(_contentController.book.value.data?.getBooks?.length);
-        var deptList = _contentController.dept.value.data?.getDepartments;
         return _initDeptBody(_contentController.deptList);
       }
     });
@@ -119,7 +118,7 @@ class _DepartmentBodyState extends State<DepartmentBody> {
                     onTap: () {
                       // Navigator.name(context, MyRouters.departmentRoute);
                       Get.toNamed(MyRouters.departmentRoute, arguments: {
-                        "deptBanner": deptList[index],
+                        "category": deptList[index],
                         "deptName": deptFullName[deptList[index]],
                       });
                     },

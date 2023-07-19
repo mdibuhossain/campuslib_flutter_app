@@ -7,9 +7,14 @@ class DepartmentItem extends StatelessWidget {
   final IconData icon;
   final String name;
   final dynamic data;
-  const DepartmentItem(
-      {Key? key, required this.icon, required this.name, required this.data})
-      : super(key: key);
+  final String category;
+  const DepartmentItem({
+    Key? key,
+    required this.icon,
+    required this.name,
+    required this.data,
+    required this.category,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +26,8 @@ class DepartmentItem extends StatelessWidget {
         onTap: () {
           Get.toNamed(MyRouters.contentRoute, arguments: {
             "data": data,
+            "category": category,
+            "sub_category": name,
           });
         },
         splashColor: Colors.deepOrange,
