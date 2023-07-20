@@ -55,12 +55,27 @@ class Content extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  props.bookName,
+                  props.bookName +
+                      ((props?.edition != null && props?.edition.length > 0)
+                          ? (" ${props?.edition}E")
+                          : ""),
                   style: const TextStyle(
                     overflow: TextOverflow.clip,
                     fontWeight: FontWeight.w500,
+                    fontSize: 15,
                   ),
                 ),
+                Container(
+                  child: (props?.author != null && (props?.author?.length > 0))
+                      ? Text(
+                          "Author: ${props.author}",
+                          style: const TextStyle(
+                            fontStyle: FontStyle.italic,
+                            overflow: TextOverflow.clip,
+                          ),
+                        )
+                      : null,
+                )
               ],
             ),
           ),

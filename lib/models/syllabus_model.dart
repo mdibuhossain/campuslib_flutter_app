@@ -48,6 +48,8 @@ class GetAllSyllabus {
   String? subCategories;
   String? addedBy;
   bool? status;
+  String? author;
+  String? edition;
 
   GetAllSyllabus(
       {this.sId,

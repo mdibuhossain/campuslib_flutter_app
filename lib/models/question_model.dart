@@ -47,6 +47,8 @@ class GetQuestions {
   String? subCategories;
   String? addedBy;
   bool? status;
+    String? author;
+  String? edition;
 
   GetQuestions(
       {this.sId,
