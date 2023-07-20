@@ -1,3 +1,4 @@
+import 'package:campuslib/utils/colors.dart';
 import 'package:campuslib/utils/routers.dart';
 import 'package:campuslib/widgets/big_text.dart';
 import 'package:flutter/material.dart';
@@ -8,29 +9,35 @@ class DepartmentItem extends StatelessWidget {
   final String name;
   final dynamic data;
   final String category;
+  final String subCategory;
   const DepartmentItem({
     Key? key,
     required this.icon,
     required this.name,
     required this.data,
     required this.category,
+    required this.subCategory,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    bool isSubCategoryAvailable = data?.any((e) => e?.categories == category);
+    print(isSubCategoryAvailable);
     return Material(
       borderRadius: BorderRadius.circular(6),
-      elevation: 4.0,
+      elevation: isSubCategoryAvailable ? 4.0 : 0.0,
       child: InkWell(
         borderRadius: BorderRadius.circular(6),
-        onTap: () {
-          Get.toNamed(MyRouters.contentRoute, arguments: {
-            "data": data,
-            "category": category,
-            "sub_category": name,
-          });
-        },
-        splashColor: Colors.deepOrange,
+        onTap: (isSubCategoryAvailable)
+            ? () {
+                Get.toNamed(MyRouters.contentRoute, arguments: {
+                  "data": data,
+                  "category": category,
+                  "title": name,
+                });
+              }
+            : null,
+        splashColor: Colors.black12,
         child: Ink(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -38,6 +45,8 @@ class DepartmentItem extends StatelessWidget {
               Icon(
                 icon,
                 size: 50,
+                color:
+                    isSubCategoryAvailable ? AppColors.mainColor : Colors.grey,
               ),
               BigText(
                 text: name,

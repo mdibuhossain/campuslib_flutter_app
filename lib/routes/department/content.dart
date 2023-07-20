@@ -1,6 +1,5 @@
 import 'package:campuslib/utils/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class Content extends StatelessWidget {
@@ -10,14 +9,14 @@ class Content extends StatelessWidget {
   Widget build(BuildContext context) {
     final Map<String, dynamic>? data = Get.arguments;
     final category = data?['category'];
-    final subCategory = data?['sub_category'];
+    final appBarTitle = data?['title'];
     final contentlist =
         data?['data']?.where((e) => e?.categories == category).toList();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            subCategory,
+            appBarTitle,
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           titleSpacing: 00.0,
