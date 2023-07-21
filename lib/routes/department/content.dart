@@ -1,9 +1,17 @@
 import 'package:campuslib/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Content extends StatelessWidget {
   const Content({Key? key}) : super(key: key);
+
+  Future<void> _launchUrl(var downloadLink) async {
+    final Uri url = Uri.parse(downloadLink);
+    if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+      throw Exception('Could not launch $url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +49,7 @@ class Content extends StatelessWidget {
       child: Card(
         margin: EdgeInsets.zero,
         child: InkWell(
-          onTap: () {},
+          onTap: () => _launchUrl(props?.downloadLink),
           child: Container(
             padding: EdgeInsets.fromLTRB(15, 25, 15, 25),
             decoration: BoxDecoration(
