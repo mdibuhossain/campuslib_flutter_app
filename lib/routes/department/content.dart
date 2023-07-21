@@ -1,10 +1,13 @@
+import 'package:campuslib/controllers/content_controller.dart';
 import 'package:campuslib/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Content extends StatelessWidget {
-  const Content({Key? key}) : super(key: key);
+  Content({Key? key}) : super(key: key);
+
+  final ContentController _contentController = Get.put(ContentController());
 
   Future<void> _launchUrl(var downloadLink) async {
     final Uri url = Uri.parse(downloadLink);
@@ -18,6 +21,7 @@ class Content extends StatelessWidget {
     final Map<String, dynamic>? data = Get.arguments;
     final category = data?['category'];
     final appBarTitle = data?['title'];
+    final subCategory = data?['subCategory'];
     final contentlist =
         data?['data']?.where((e) => e?.categories == category).toList();
     return SafeArea(
@@ -33,10 +37,16 @@ class Content extends StatelessWidget {
           backgroundColor: AppColors.mainColor,
         ),
         body: Material(
-          child: ListView.builder(
-            physics: const BouncingScrollPhysics(),
-            itemCount: contentlist?.length,
-            itemBuilder: (context, index) => contentItem(contentlist?[index]),
+          child: RefreshIndicator(
+            onRefresh: () async {
+              _contentController.fetchBooks();
+            },
+            child: ListView.builder(
+              physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics()),
+              itemCount: contentlist?.length,
+              itemBuilder: (context, index) => contentItem(contentlist?[index]),
+            ),
           ),
         ),
       ),
@@ -44,51 +54,56 @@ class Content extends StatelessWidget {
   }
 
   Widget contentItem(var props) {
-    return Container(
-      // margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-      child: Card(
-        margin: EdgeInsets.zero,
-        child: InkWell(
-          onTap: () => _launchUrl(props?.downloadLink),
-          child: Container(
-            padding: EdgeInsets.fromLTRB(15, 25, 15, 25),
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: Colors.grey.shade300,
-                ),
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  props.bookName +
-                      ((props?.edition != null && props?.edition.length > 0)
-                          ? (" ${props?.edition}E")
-                          : ""),
-                  style: const TextStyle(
-                    overflow: TextOverflow.clip,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 15,
+    if (props?.status) {
+      return Container(
+        // margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+        child: Card(
+          margin: EdgeInsets.zero,
+          child: InkWell(
+            onTap: () => _launchUrl(props?.downloadLink),
+            child: Container(
+              padding: EdgeInsets.fromLTRB(15, 25, 15, 25),
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: Colors.grey.shade300,
                   ),
                 ),
-                Container(
-                  child: (props?.author != null && (props?.author?.length > 0))
-                      ? Text(
-                          "Author: ${props.author}",
-                          style: const TextStyle(
-                            fontStyle: FontStyle.italic,
-                            overflow: TextOverflow.clip,
-                          ),
-                        )
-                      : null,
-                )
-              ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    props.bookName +
+                        ((props?.edition != null && props?.edition.length > 0)
+                            ? (" ${props?.edition}E")
+                            : ""),
+                    style: const TextStyle(
+                      overflow: TextOverflow.clip,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15,
+                    ),
+                  ),
+                  Container(
+                    child:
+                        (props?.author != null && (props?.author?.length > 0))
+                            ? Text(
+                                "Author: ${props.author}",
+                                style: const TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                  overflow: TextOverflow.clip,
+                                ),
+                              )
+                            : null,
+                  )
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    } else {
+      return Container();
+    }
   }
 }

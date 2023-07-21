@@ -71,13 +71,18 @@ class _DepartmentBodyState extends State<DepartmentBody> {
                         topRight: Radius.circular(40),
                       ),
                     ),
-                    child: ListView.builder(
-                      itemCount: deptList?.length,
-                      padding: EdgeInsets.zero,
-                      physics: BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) =>
-                          _buildDepartmentItem(deptList, index),
+                    child: RefreshIndicator(
+                      onRefresh: () async =>
+                          _contentController.fetchDepartments(),
+                      child: ListView.builder(
+                        itemCount: deptList?.length,
+                        padding: EdgeInsets.zero,
+                        physics: BouncingScrollPhysics(
+                            parent: AlwaysScrollableScrollPhysics()),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) =>
+                            _buildDepartmentItem(deptList, index),
+                      ),
                     ),
                   ),
                 )

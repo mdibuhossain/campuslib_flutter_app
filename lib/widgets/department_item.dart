@@ -34,6 +34,7 @@ class DepartmentItem extends StatelessWidget {
                   "data": data,
                   "category": category,
                   "title": name,
+                  "subCategory": subCategory,
                 });
               }
             : null,
