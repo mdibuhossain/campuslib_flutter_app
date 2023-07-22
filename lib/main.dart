@@ -34,8 +34,8 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   static const List<Widget> _navPages = <Widget>[
     // Content(),
-    MainHomePage(),
     SearchPage(),
+    MainHomePage(),
     ProfilePage(),
   ];
 

@@ -12,7 +12,7 @@ class ProfilePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Text("Profile page"),
+            child: Text("Under Construction"),
           ),
         ],
       ),

@@ -13,7 +13,6 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<TotalProvider>(context);
-
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
@@ -24,6 +23,7 @@ class BottomNavBar extends StatelessWidget {
         ),
       ),
       child: GNav(
+        selectedIndex: provider.selectedNavIdx,
         gap: 8,
         backgroundColor: AppColors.mainColor,
         color: AppColors.iconColor1,
@@ -33,22 +33,23 @@ class BottomNavBar extends StatelessWidget {
         duration: Duration(milliseconds: 300),
         onTabChange: (value) {
           provider.toggleNavIndex(value);
-          print(Dimension.screenHeight(context).toString() +
-              " " +
-              Dimension.screenWidth(context).toString());
         },
+        haptic: true,
         tabs: [
-          GButton(
-            icon: Icons.home,
-            text: "Home",
-          ),
           GButton(
             icon: Icons.search,
             text: "Search",
+            haptic: true,
+          ),
+          GButton(
+            icon: Icons.home,
+            text: "Home",
+            haptic: true,
           ),
           GButton(
             icon: Icons.person,
             text: "Profile",
+            haptic: true,
           ),
         ],
       ),
