@@ -102,35 +102,42 @@ class DepartmentPage extends StatelessWidget {
                     topRight: Radius.circular(30),
                   ),
                 ),
-                child: GridView.count(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 15,
-                  mainAxisSpacing: 15,
-                  physics: BouncingScrollPhysics(),
-                  padding: EdgeInsets.fromLTRB(50, 80, 50, 10),
-                  children: [
-                    DepartmentItem(
-                      icon: Icons.book_outlined,
-                      name: "Books",
-                      data: _contentController.bookList,
-                      category: category,
-                      subCategory: "book",
-                    ),
-                    DepartmentItem(
-                      icon: Icons.question_mark_outlined,
-                      name: "Questions",
-                      data: _contentController.questionList,
-                      category: category,
-                      subCategory: "question",
-                    ),
-                    DepartmentItem(
-                      icon: Icons.topic,
-                      name: "Syllabus",
-                      data: _contentController.syllabusList,
-                      category: category,
-                      subCategory: "syllabus",
-                    ),
-                  ],
+                child: Obx(
+                  () => GridView.count(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 15,
+                    mainAxisSpacing: 15,
+                    physics: BouncingScrollPhysics(),
+                    padding: EdgeInsets.fromLTRB(50, 80, 50, 10),
+                    children: [
+                      DepartmentItem(
+                        icon: Icons.book_outlined,
+                        name: "Books",
+                        data: _contentController.bookList,
+                        category: category,
+                        subCategory: "book",
+                        onRefresh: () async => _contentController.fetchBooks(),
+                      ),
+                      DepartmentItem(
+                        icon: Icons.question_mark_outlined,
+                        name: "Questions",
+                        data: _contentController.questionList,
+                        category: category,
+                        subCategory: "question",
+                        onRefresh: () async =>
+                            _contentController.fetchQuestions(),
+                      ),
+                      DepartmentItem(
+                        icon: Icons.topic,
+                        name: "Syllabus",
+                        data: _contentController.syllabusList,
+                        category: category,
+                        subCategory: "syllabus",
+                        onRefresh: () async =>
+                            _contentController.fetchSyllabuses(),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

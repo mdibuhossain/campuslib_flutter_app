@@ -22,6 +22,7 @@ class Content extends StatelessWidget {
     final category = data?['category'];
     final appBarTitle = data?['title'];
     final subCategory = data?['subCategory'];
+    final Future<void> Function() onRefresh = data?['onRefresh'];
     final contentlist =
         data?['data']?.where((e) => e?.categories == category).toList();
     return SafeArea(
@@ -38,13 +39,11 @@ class Content extends StatelessWidget {
         ),
         body: Material(
           child: RefreshIndicator(
-            onRefresh: () async {
-              _contentController.fetchBooks();
-            },
+            onRefresh: onRefresh,
             child: ListView.builder(
               physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics()),
-              itemCount: contentlist?.length,
+              itemCount: contentlist.length,
               itemBuilder: (context, index) => contentItem(contentlist?[index]),
             ),
           ),

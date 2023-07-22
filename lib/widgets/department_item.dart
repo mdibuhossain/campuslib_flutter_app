@@ -10,6 +10,7 @@ class DepartmentItem extends StatelessWidget {
   final dynamic data;
   final String category;
   final String subCategory;
+  final Future<void> Function() onRefresh;
   const DepartmentItem({
     Key? key,
     required this.icon,
@@ -17,6 +18,7 @@ class DepartmentItem extends StatelessWidget {
     required this.data,
     required this.category,
     required this.subCategory,
+    required this.onRefresh,
   }) : super(key: key);
 
   @override
@@ -35,6 +37,7 @@ class DepartmentItem extends StatelessWidget {
                   "category": category,
                   "title": name,
                   "subCategory": subCategory,
+                  "onRefresh": onRefresh,
                 });
               }
             : null,
